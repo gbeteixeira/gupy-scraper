@@ -1,0 +1,53 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Job {
+  id            Int     @id
+  companyId     Int
+  name          String?
+  type          String?
+  isRemoteWork  Boolean
+  city          String?
+  state         String?
+  country       String?
+  jobUrl        String
+  workplaceType String?
+  careerPageUrl String?
+
+  publishedDate       DateTime
+  applicationDeadline DateTime?
+
+  @@map("job")
+}
+
+model ProcessJob {
+  id          Int       @id
+  title       String
+  description String
+  company     String
+  local       String
+  requisites  String    @default("{}")
+  modality    String
+  link        String
+  publishDate DateTime?
+  img         String?
+  match       Int
+
+  @@map("process_job")
+}
+
+model User {
+  id String @id @map("id")
+  cv String
+
+  @@map("user")
+}
