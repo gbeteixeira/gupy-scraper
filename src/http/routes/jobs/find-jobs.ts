@@ -112,7 +112,7 @@ export async function findJobs(app: FastifyInstance) {
         )
 
         return reply.status(201).send({
-          message: `Success`,
+          message: 'Success',
         })
       },
     )

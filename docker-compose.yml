@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+    cache:
+        container_name: queue-cache
+        image: redis
+        ports:
+            - ${REDIS_PORT-6379}:${REDIS_PORT-6379}
+        volumes:
+            - ./data/redis:/data
+        networks:
+            - queue-net
+
+networks:
+    queue-net:
