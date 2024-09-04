@@ -12,6 +12,7 @@ export const envSchema = z.object({
 
   MODEL_NAME: z.string(),
   API_KEY: z.string(),
+  DISCORD_CHANNEL_WEBHOOK: z.string(),
 })
 
 export const env = envSchema.parse(process.env);

@@ -10,8 +10,10 @@ import {
 
 import { bullBoardPlugin } from '@/bull/bull-board.plugin'
 import { errorHandler } from '@/http/error-handler'
+import { task } from '@/lib/schedule'
 import fastify from 'fastify'
-import { findJobs } from './routes/jobs/find-jobs'
+import { findGupyJobs } from './routes/jobs/find-gupy-jobs'
+import { findSolidesJobs } from './routes/jobs/find-solides-jobs'
 
 export const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -46,10 +48,12 @@ app.register(fastifySwaggerUI, {
 
 app.register(fastifyCors)
 
-app.register(findJobs)
+app.register(findGupyJobs)
+app.register(findSolidesJobs)
 
 app.register(bullBoardPlugin);
 
 app.listen({ port: 3333 }).then(() => {
   console.log('[LOG] HTTP server running!')
+  task.start()
 })

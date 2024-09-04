@@ -23,3 +23,17 @@ export interface Job {
 export interface Badges {
   friendlyBadge: boolean
 }
+
+
+export interface GupyProcessedJob {
+  jobId: number
+  title: string,
+  link: string,
+  description: string,
+  img?: string,
+  requisites: string,
+  company: string,
+  local: string,
+  modality: string,
+  publishDate?: Date
+}

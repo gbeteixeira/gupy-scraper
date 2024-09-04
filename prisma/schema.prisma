@@ -11,17 +11,33 @@ datasource db {
 }
 
 model Job {
-  id            Int     @id
-  companyId     Int
-  name          String?
-  type          String?
-  isRemoteWork  Boolean
-  city          String?
-  state         String?
-  country       String?
+  id    Int @id @default(autoincrement())
+  jobId Int @unique
+
+  // job
+  title       String?
+  description String?
+
+  // company
+  companyId   Int?
+  companyLogo String?
+  companyName String?
+
+  // locale
+  city    String?
+  state   String?
+  country String?
+
+  hardSkills String?
+  education  String?
+
+  seniority    String?
+  platform     String
+  contractType String  @default("not informed")
+
   jobUrl        String
-  workplaceType String?
-  careerPageUrl String?
+  workplaceType String
+  currentState  String?
 
   publishedDate       DateTime
   applicationDeadline DateTime?
@@ -30,13 +46,15 @@ model Job {
 }
 
 model ProcessJob {
-  id          Int       @id
+  id    Int @id @default(autoincrement())
+  jobId Int @unique
+
   title       String
   description String
   company     String
   local       String
   requisites  String    @default("{}")
-  modality    String
+  modality    String?
   link        String
   publishDate DateTime?
   img         String?
